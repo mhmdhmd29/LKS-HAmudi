@@ -1,0 +1,17 @@
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.csproj.AssemblyReference.cache
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.AdminNavigation.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.Form1.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.KasirNavigation.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.Properties.Resources.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.csproj.GenerateResource.cache
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.csproj.CoreCompileInputs.cache
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\bin\Debug\FrmLogin.exe.config
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\bin\Debug\FrmLogin.exe
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\bin\Debug\FrmLogin.pdb
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.exe
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.pdb
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.ManageMenuFom.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.ManageMemberForm.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.OrderForm.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.PaymentForm.resources
+C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.ReportForm.resources
