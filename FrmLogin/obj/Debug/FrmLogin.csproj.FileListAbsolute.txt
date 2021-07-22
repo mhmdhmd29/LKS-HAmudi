@@ -15,3 +15,19 @@ C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.Manage
 C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.OrderForm.resources
 C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.PaymentForm.resources
 C:\Users\PHANTOM GAMING\source\repos\FrmLogin\FrmLogin\obj\Debug\FrmLogin.ReportForm.resources
+D:\lks\LKS-HAmudi\FrmLogin\bin\Debug\FrmLogin.exe.config
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.exe
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.pdb
+D:\lks\LKS-HAmudi\FrmLogin\bin\Debug\FrmLogin.exe
+D:\lks\LKS-HAmudi\FrmLogin\bin\Debug\FrmLogin.pdb
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.csprojResolveAssemblyReference.cache
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.AdminNavigation.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.Form1.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.KasirNavigation.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.ManageMemberForm.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.ManageMenuFom.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.OrderForm.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.PaymentForm.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.Properties.Resources.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.ReportForm.resources
+D:\lks\LKS-HAmudi\FrmLogin\obj\Debug\FrmLogin.csproj.GenerateResource.Cache

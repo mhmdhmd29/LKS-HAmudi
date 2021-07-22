@@ -15,8 +15,33 @@ namespace FrmLogin
         private SqlCommand cmd;
         private SqlDataAdapter da;
         private DataSet ds;
+        String orderid = "";
 
         Koneksi Konn = new Koneksi();
+
+        void getPayment()
+        {
+            SqlConnection conn = Konn.getKoneksi();
+            try
+            {
+                conn.Open();
+                da = new SqlDataAdapter("SELECT id From OrderHeader", conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "orderid");
+                comboBox3.DisplayMember = "id";
+                comboBox3.ValueMember = "id";
+                comboBox3.DataSource = ds.Tables["orderid"];
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
 
 
@@ -26,7 +51,7 @@ namespace FrmLogin
             try
             {
                 conn.Open();
-                cmd = new SqlCommand("SELECT dbo.MsMenu.Name, dbo.OrderDetail.Qty, dbo.MsMenu.Price FROM dbo.MsMenu INNER JOIN dbo.OrderDetail ON dbo.MsMenu.Id = dbo.OrderDetail.Menuid", conn);
+                cmd = new SqlCommand("SELECT dbo.MsMenu.Name, dbo.OrderDetail.Qty, dbo.MsMenu.Price FROM dbo.MsMenu INNER JOIN dbo.OrderDetail ON dbo.MsMenu.Id = dbo.OrderDetail.Menuid where Orderid = '"+orderid.ToString()+"' ", conn);
                 da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -52,6 +77,7 @@ namespace FrmLogin
 
         private void PaymentForm_Load(object sender, EventArgs e)
         {
+            getPayment();
             payment();
         }
 
@@ -62,6 +88,14 @@ namespace FrmLogin
                 label6.Visible = true;
                 textBox1.Visible = true;
             }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            orderid = comboBox3.SelectedValue.ToString();
+            MessageBox.Show(orderid);
+
+            payment();
         }
     }
 }

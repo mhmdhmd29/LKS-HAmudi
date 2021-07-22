@@ -47,7 +47,7 @@ namespace FrmLogin
             this.txtProtein = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtMember = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -81,6 +81,7 @@ namespace FrmLogin
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label2
             // 
@@ -216,19 +217,21 @@ namespace FrmLogin
             this.label4.TabIndex = 23;
             this.label4.Text = "Member";
             // 
-            // txtMember
+            // comboBox1
             // 
-            this.txtMember.Location = new System.Drawing.Point(78, 40);
-            this.txtMember.Name = "txtMember";
-            this.txtMember.Size = new System.Drawing.Size(129, 20);
-            this.txtMember.TabIndex = 24;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(78, 40);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(143, 21);
+            this.comboBox1.TabIndex = 24;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 609);
-            this.Controls.Add(this.txtMember);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.txtProtein);
@@ -281,6 +284,6 @@ namespace FrmLogin
         private System.Windows.Forms.Label txtProtein;
         private System.Windows.Forms.Label txtTotal;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtMember;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

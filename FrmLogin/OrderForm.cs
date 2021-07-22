@@ -15,12 +15,14 @@ namespace FrmLogin
     {
         private SqlCommand cmd;
         private SqlDataAdapter da;
+
         SqlDataReader sdr;
         private DataSet ds;
         String NamaFoto = "";
         String Id = "";
         String Id2 = "";
         String Memberid = "";
+        String orderHeader = "";
         public String employeeid;
 
         Koneksi Konn = new Koneksi();
@@ -39,8 +41,44 @@ namespace FrmLogin
             public OrderForm()
         {
             InitializeComponent();
+            getMember();
+
+            refresh();
+            
             //btnOrder.Visible = false;
         }
+
+        void refresh()
+        {
+
+            String lastOrderHeader = "";
+            SqlConnection conn = Konn.getKoneksi();
+            try
+            {
+
+                conn.Open();
+                cmd = new SqlCommand("SELECT COUNT(*) FROM OrderHeader", conn);
+
+                sdr = cmd.ExecuteReader();
+                sdr.Read();
+                if (sdr.HasRows)
+                {
+                    lastOrderHeader = sdr.GetInt32(0).ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            finally
+            {
+                orderHeader = DateTime.Now.ToString("yyyyMMdd") + "0" + lastOrderHeader;
+                conn.Close();
+            }
+        }
+
         void tampilMenu()
         {
             SqlConnection conn = Konn.getKoneksi();
@@ -76,7 +114,7 @@ namespace FrmLogin
             try
             {
                 conn.Open();
-                cmd = new SqlCommand("SELECT dbo.OrderDetail.Id AS ID, dbo.MsMenu.Name, dbo.OrderDetail.Qty, dbo.MsMenu.Carbo, dbo.MsMenu.Protein, dbo.MsMenu.Price, dbo.MsMenu.Id AS Id1, cast(dbo.MsMenu.Price as bigint) * cast(dbo.OrderDetail.Qty as bigint) as total FROM dbo.OrderDetail INNER JOIN dbo.MsMenu ON dbo.OrderDetail.Menuid = dbo.MsMenu.Id", conn);
+                cmd = new SqlCommand("SELECT dbo.OrderDetail.Id, dbo.MsMenu.Name, dbo.OrderDetail.Qty, dbo.MsMenu.Carbo, dbo.MsMenu.Protein, dbo.MsMenu.Price, dbo.MsMenu.Id AS Id1 FROM dbo.OrderDetail INNER JOIN dbo.MsMenu ON dbo.OrderDetail.Menuid = dbo.MsMenu.Id where Orderid ='"+orderHeader+"' ;", conn);
                 ds = new DataSet();
                 da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -89,7 +127,7 @@ namespace FrmLogin
 
                 for (int i = 0; i < dataGridView2.Rows.Count; ++i)
                 {
-                    totalHarga += Convert.ToInt32(dataGridView2.Rows[i].Cells[7].Value);
+                    totalHarga += Convert.ToInt32(dataGridView2.Rows[i].Cells[5].Value);
                 }
 
                 txtTotal.Text = totalHarga.ToString();
@@ -141,8 +179,8 @@ namespace FrmLogin
             {
                 DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
                 textBox1.Text = row.Cells["Name"].Value.ToString();               
-                String path = "C:\\Users\\PHANTOM GAMING\\source\\repos\\FrmLogin\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
-                picture.ImageLocation = "C:\\Users\\PHANTOM GAMING\\source\\repos\\FrmLogin\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
+                String path = "D:\\lks\\LKS-HAmudi\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
+                picture.ImageLocation = "D:\\lks\\LKS-HAmudi\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
                 Id = row.Cells["Id"].Value.ToString();
             }
             catch (Exception h)
@@ -153,16 +191,20 @@ namespace FrmLogin
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             if (textBox1.Text.Trim() == "" || textBox2.Text.Trim() == "")
             {
                 MessageBox.Show("Data belum lengkap!");
             }
             else
             {
+
+
                 SqlConnection conn = Konn.getKoneksi();
+
                 try
                 {
-                    cmd = new SqlCommand("insert into OrderDetail values('1','" + Id + "', '" + textBox2.Text + "', null) ", conn);
+                    cmd = new SqlCommand("insert into OrderDetail values('"+ orderHeader.ToString() +"','" + Id + "', '" + textBox2.Text + "', 'UNPAID') ", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Insert data berhasil");
@@ -185,34 +227,45 @@ namespace FrmLogin
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Memberid = txtMember.Text.ToString();
-            String lastOrderHeader = "";
+
+
+            SqlConnection conn = Konn.getKoneksi();
+
+
             try
             {
-                SqlConnection conn = Konn.getKoneksi();
+                string query = "insert into [OrderHeader] values ('"+orderHeader.ToString()+"','1','"+ comboBox1.SelectedValue +"',GETDATE(),null,null,null);";
                 conn.Open();
-                cmd = new SqlCommand("SELECT COUNT(*) FROM OrderHeader", conn);
+                cmd = new SqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
 
-                sdr = cmd.ExecuteReader();
-                sdr.Read();
-                if (sdr.HasRows)
-                {
-                    lastOrderHeader = sdr.GetInt32(0).ToString();
-                }
-                
-            }catch(Exception ex)
+
+                refresh();
+                MessageBox.Show("berhasil melakukan order");
+                ResetDataGridView();
+
+
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+            finally
+            {
+                conn.Close();
+            }
 
-
-
-
-    
-            String orderHeader = DateTime.Now.ToString("yyyyMMdd") + "000" + lastOrderHeader;
-
-            MessageBox.Show(orderHeader.ToString());
         }
+
+        private void ResetDataGridView()
+        {
+            dataGridView2.CancelEdit();
+            dataGridView2.Columns.Clear();
+            //dataGridView2.DataSource = null;
+            //InitializeDataGridView();
+        }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -249,6 +302,45 @@ namespace FrmLogin
             catch (Exception h)
             {
                 MessageBox.Show(h.ToString());
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        void getMember()
+        {
+            SqlConnection conn = Konn.getKoneksi();
+            try
+            {
+                
+                conn.Open();
+                da = new SqlDataAdapter("SELECT id,name From MsMember", conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "member");
+                comboBox1.DisplayMember = "name";
+                comboBox1.ValueMember = "id";
+                comboBox1.DataSource = ds.Tables["member"];
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }
