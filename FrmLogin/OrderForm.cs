@@ -179,8 +179,8 @@ namespace FrmLogin
             {
                 DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
                 textBox1.Text = row.Cells["Name"].Value.ToString();               
-                String path = "D:\\lks\\LKS-HAmudi\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
-                picture.ImageLocation = "D:\\lks\\LKS-HAmudi\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
+                String path = "E:\\ks\\LKS-HAmudi\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
+                picture.ImageLocation = "E:\\lks\\LKS-HAmudi\\FrmLogin\\images\\" + row.Cells["Photo"].Value.ToString();
                 Id = row.Cells["Id"].Value.ToString();
             }
             catch (Exception h)
@@ -234,7 +234,7 @@ namespace FrmLogin
 
             try
             {
-                string query = "insert into [OrderHeader] values ('"+orderHeader.ToString()+"','1','"+ comboBox1.SelectedValue +"',GETDATE(),null,null,null);";
+                string query = "insert into [OrderHeader] values ('"+orderHeader.ToString()+"','1','"+ comboBox1.SelectedValue +"',GETDATE(),null,null,null,'"+Int32.Parse(txtTotal.Text)+"')";
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
@@ -312,7 +312,7 @@ namespace FrmLogin
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            MessageBox.Show(comboBox1.SelectedValue.ToString());
         }
 
         void getMember()
